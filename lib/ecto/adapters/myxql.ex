@@ -309,10 +309,7 @@ defmodule Ecto.Adapters.MyXQL do
                 "This may happen if you have trigger or other database conditions rejecting operations. " <>
                 "The emitted SQL was: #{sql}"
 
-      {:ok, %{num_rows: 1, last_insert_id: last_insert_id}} ->
-        {:ok, last_insert_id(key, last_insert_id)}
-
-      {:ok, %{num_rows: 2, last_insert_id: last_insert_id}} ->
+      {:ok, %{num_rows: _num_rows, last_insert_id: last_insert_id}} ->
         {:ok, last_insert_id(key, last_insert_id)}
 
       {:error, err} ->
